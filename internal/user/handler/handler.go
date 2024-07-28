@@ -35,15 +35,6 @@ func NewUserHandler(search func(ctx context.Context, m interface{}, results inte
 	return &UserHandler{service: service, Validate: validate, LogError: logError, search: search, jsonMap: jsonMap, paramIndex: paramIndex, filterIndex: filterIndex}
 }
 
-func (h *UserHandler) All(w http.ResponseWriter, r *http.Request) {
-	users, err := h.service.All(r.Context())
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	JSON(w, http.StatusOK, users)
-}
-
 func (h *UserHandler) Load(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	if len(id) == 0 {

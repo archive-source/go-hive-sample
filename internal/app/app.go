@@ -5,7 +5,7 @@ import (
 
 	"github.com/beltran/gohive"
 	"github.com/core-go/health"
-	h "github.com/core-go/hive/health"
+	h "github.com/core-go/health/hive"
 	"github.com/core-go/log"
 
 	"go-service/internal/user"

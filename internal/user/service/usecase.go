@@ -3,26 +3,30 @@ package service
 import (
 	"context"
 
+	"github.com/core-go/core"
+
 	"go-service/internal/user/model"
-	"go-service/internal/user/repository"
 )
 
-func NewUserService(repository repository.UserRepository) *UserUsecase {
+func NewUserService(repository core.Repository) *UserUsecase {
 	return &UserUsecase{repository: repository}
 }
 
 type UserUsecase struct {
-	repository repository.UserRepository
+	repository core.Repository
 }
 
-func (s *UserUsecase) All(ctx context.Context) ([]model.User, error) {
-	return s.repository.All(ctx)
-}
 func (s *UserUsecase) Load(ctx context.Context, id string) (*model.User, error) {
-	return s.repository.Load(ctx, id)
+	var user model.User
+	ok, err := s.repository.Get(ctx, id, &user)
+	if !ok {
+		return nil, err
+	} else {
+		return &user, err
+	}
 }
 func (s *UserUsecase) Create(ctx context.Context, user *model.User) (int64, error) {
-	return s.repository.Create(ctx, user)
+	return s.repository.Insert(ctx, user)
 }
 func (s *UserUsecase) Update(ctx context.Context, user *model.User) (int64, error) {
 	return s.repository.Update(ctx, user)

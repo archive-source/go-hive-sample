@@ -1,22 +1,20 @@
 module go-service
 
-go 1.21
-
-toolchain go1.22.4
+go 1.17
 
 require (
 	github.com/beltran/gohive v1.7.0
 	github.com/core-go/config v1.0.1
 	github.com/core-go/core v0.6.5
 	github.com/core-go/health v1.0.3
-	github.com/core-go/hive v0.3.5
+	github.com/core-go/hive v0.2.5
 	github.com/core-go/log v1.0.5
 	github.com/core-go/search v1.0.7
 	github.com/gorilla/mux v1.8.1
 )
 
 require (
-	github.com/apache/thrift v0.20.0 // indirect
+	github.com/apache/thrift v0.19.0 // indirect
 	github.com/beltran/gosasl v0.0.0-20240525201126-ea45571eeb66 // indirect
 	github.com/beltran/gssapi v0.0.0-20200324152954-d86554db4bab // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
